@@ -1,0 +1,15 @@
+# files to ignore
+*.pcd
+*.user
+
+
+# folder vscode 
+*.vscode/*
+
+# results
+./scripts/results
+./scripts/features-extraction
+
+
+# build c++ 
+./build/*

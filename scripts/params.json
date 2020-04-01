@@ -1,0 +1,96 @@
+{
+	"exe": "../build/pipeline-features-keypoints",
+	"paths": {
+		"clouds": "../../data/registrations_cropped",
+		"keypoints": "../../data/registrations_landmarks_transformed",
+		"clouds2": "../../../DATA/BASE_REAL/BOSPHORUS_OCCLUSIONS_NEUTRALS",
+		"keypoints2": "../../../DATA/BASE_REAL/BOSPHORUS_LANDMARKS_OCCLUSIONS_NEUTRALS",
+		"output": "./features-extraction/oclusions/FPFH"
+	},
+	"keypoints": {
+		"landmarksManually": {}
+	},
+	"features": {
+		"ROPS": {
+			"descriptorSize": 135,
+			"params": {
+				"normalRadiusSearch": "20",
+				"meshSearchRadius": "40",
+				"mu": "2.5",
+				"maximumNearestNeighbors": "300",
+				"featRadiusSearch": "25",
+				"numberOfPartitionBins": "15",
+				"numberOfRotations": "3",
+				"supportRadius": "15"
+			}
+		},
+		"PFH": {
+			"descriptorSize": 125,
+			"params": {
+				"normalRadiusSearch": "15",
+				"featRadiusSearch": "25"
+			}
+		},
+		"FPFH": {
+			"descriptorSize": 33,
+			"params": {
+				"normalRadiusSearch": "15",
+				"featRadiusSearch": "25"
+			}
+		},
+		"MI": {
+			"descriptorSize": 3,
+			"params": {
+				"normalRadiusSearch": "15",
+				"featRadiusSearch": "25"
+			}
+		},
+		"SHOT": {
+			"descriptorSize": 352,
+			"params": {
+				"normalRadiusSearch": "15",
+				"featRadiusSearch": "25"
+			}
+		},
+		"SI": {
+			"descriptorSize": 153,
+			"params": {
+				"normalRadiusSearch": "20",
+				"featRadiusSearch": "20",
+				"imageWidth": "5"
+			}
+		},
+		"VFH": {
+			"descriptorSize": 308,
+			"params": {
+				"normalRadiusSearch": "15",
+				"featRadiusSearch": "35"
+			}
+		},
+		"GRSD": {
+			"descriptorSize": 21,
+			"params": {
+				"normalRadiusSearch": "20",
+				"featRadiusSearch": "35"
+			}
+		},
+		"SC": {
+			"descriptorSize": 1980,
+			"params": {
+				"normalRadiusSearch": "15",
+				"featRadiusSearch": "25",
+				"minimalRadius": "5",
+				"pointDensityRadius": "3"
+			}
+		},
+		"USC": {
+			"descriptorSize": 1960,
+			"params": {
+				"featRadiusSearch": "15",
+				"minimalRadius": "15",
+				"pointDensityRadius": "3",
+				"localRadius": "25"
+			}
+		}
+	}
+}
