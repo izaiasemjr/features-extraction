@@ -1,6 +1,7 @@
 {
 	"exe": "../build/pipeline-features-keypoints",
 	"paths": {
+		"link_data":"https://drive.google.com/drive/folders/1XRX-tqZgYbDnoYieaQDuzBQFb0KdIWcE?usp=sharing"
 		"clouds": "../../data/registrations_cropped",
 		"keypoints": "../../data/registrations_landmarks_transformed",
 		"clouds2": "../../../DATA/BASE_REAL/BOSPHORUS_OCCLUSIONS_NEUTRALS",
