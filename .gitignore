@@ -2,14 +2,13 @@
 *.pcd
 *.user
 
-
 # folder vscode 
-*.vscode/*
+*.vscode/
 
 # results
-./scripts/results
-./scripts/features-extraction
+/scripts/results
+/scripts/features-extraction
 
 
 # build c++ 
-./build/*
+#/build/
