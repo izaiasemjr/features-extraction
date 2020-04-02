@@ -23,13 +23,15 @@ def main():
         paramsJson = json.load(jsonFile)
 
     # rays_norm = [10, 15, 20, 25, 30, 35, 40, 45, 50]
-    rays_norm = [15, 25, 35, 45]
+    rays_norm = [35, 45]
     for radius_norm in rays_norm:
 
         regions = [
             "nose_tip", "eye_ri", "eye_re", "eye_li", "eye_le", "mouth_r",
-            "mouth_l", "mouth_cu", "mouth_cd"
+            "mouth_l", "mouth_cu", "mouth_cd", "eye_ule", "eye_uli", "eye_uri",
+            "eye_ure"
         ]
+        # regions = ["eye_ule","eye_uli", "eye_uri", "eye_ure"]
         for region in regions:
 
             # rays_feat = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55]

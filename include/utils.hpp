@@ -63,6 +63,8 @@ class Tools {
     normal_estimation_omp.compute(*normals);
   }
 
+
+
 };
 
 /**

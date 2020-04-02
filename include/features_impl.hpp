@@ -4,6 +4,7 @@
 // pcl features
 #include <pcl/features/3dsc.h>
 #include <pcl/features/usc.h>
+#include <pcl/features/normal_3d_omp.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/features/rops_estimation.h>
 #include <pcl/features/pfh.h>
@@ -302,18 +303,19 @@ vector<vector<float>> estimateFPFH(PointCloudXYZPtr cloud,
 
 
     // Estimate the normals.
-    pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> normalEstimation;
-    normalEstimation.setInputCloud(cloud);
-    normalEstimation.setRadiusSearch(normal_radius_search_);
-    pcl::search::KdTree<pcl::PointXYZ>::Ptr kdtree(new pcl::search::KdTree<pcl::PointXYZ>);
-    normalEstimation.setSearchMethod(kdtree);
-    normalEstimation.compute(*normals);
+    NormalEstimationOMP<PointXYZ, Normal> normal_estimation_omp;
+    normal_estimation_omp.setInputCloud(cloud);
+    normal_estimation_omp.setRadiusSearch(normal_radius_search_);
+    search::KdTree<PointXYZ>::Ptr kdtree_omp(new search::KdTree<PointXYZ>);
+    normal_estimation_omp.setSearchMethod(kdtree_omp);
+    normal_estimation_omp.compute(*normals);
+
 
     // PFH estimation object.
     pcl::FPFHEstimation<pcl::PointXYZ, pcl::Normal, pcl::FPFHSignature33> fpfh;
     fpfh.setInputCloud(cloud);
     fpfh.setInputNormals(normals);
-    fpfh.setSearchMethod(kdtree);
+    fpfh.setSearchMethod(kdtree_omp);
     // Search radius, to look for neighbors. Note: the value given here has to be
     // larger than the radius used to estimate the normals.
     fpfh.setRadiusSearch(feat_radius_search_);
