@@ -13,7 +13,7 @@ comparePerson <- function(p1, p2){
 ##################################################
 
 
-M = read.csv(file = "Documentos/MESTRADO/teste-features/data/metrics-extraction/metrics.dat")
+# M = read.csv(file = "Documentos/MESTRADO/teste-features/data/metrics-extraction/metrics.dat")
 personTest = unique(M[,'source'])
 c = 0
 

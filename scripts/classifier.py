@@ -68,7 +68,7 @@ def plotAccuraciaRegions(results_regions):
   
 
 #norm_rays=[15,20,25,30,35,40] 
-norm_rays=[15]
+norm_rays=[15,25,35]
 for norm_radius in norm_rays:
   classifiers={
   #     "LDA":LDA(),
@@ -78,14 +78,14 @@ for norm_radius in norm_rays:
   #      "GaussianNB":GaussianNB(),
   #      "RandomForest":RandomForestClassifier(n_estimators=1000),
         "LinearSVC":LinearSVC(),      
-        "NC-Euclidean":NC(metric="euclidean"),
-        "NC-Manhattam":NC(metric="manhattan"),
-        "KNN3":KNN(p=3, n_neighbors=1),
-        "KNN4":KNN(p=4, n_neighbors=1),
+        "KNN-Euclidean":KNN(metric="euclidean"),
+        "KNN-Manhattam":KNN(metric="manhattan"),
+#        "KNN3":KNN(p=3, n_neighbors=1),
+#        "KNN4":KNN(p=4, n_neighbors=1),
       } 
   
   regions = ["nose_tip", "eye_ri", "eye_re", "eye_li","eye_le", "mouth_r", "mouth_l", "mouth_cu", "mouth_cd"]
-  
+  #regions=[ "mouth_r", "mouth_l", "mouth_cu", "mouth_cd"]
   results_regions={}
   for region in regions:
     extractor='FPFH'

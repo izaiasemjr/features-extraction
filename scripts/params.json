@@ -1,12 +1,13 @@
 {
 	"exe": "../build/pipeline-features-keypoints",
 	"paths": {
-		"link_data":"https://drive.google.com/drive/folders/1XRX-tqZgYbDnoYieaQDuzBQFb0KdIWcE?usp=sharing",
+		"link_data": "https://drive.google.com/drive/folders/1XRX-tqZgYbDnoYieaQDuzBQFb0KdIWcE?usp=sharing",
 		"clouds": "../../data/registrations_cropped",
 		"keypoints": "../../data/registrations_landmarks_transformed",
+		"output": "./features-extraction/keypoints_from_nose/neutral_oclusions/FPFH",
 		"clouds2": "../../../DATA/BASE_REAL/BOSPHORUS_OCCLUSIONS_NEUTRALS",
 		"keypoints2": "../../../DATA/BASE_REAL/BOSPHORUS_LANDMARKS_OCCLUSIONS_NEUTRALS",
-		"output": "./features-extraction/oclusions/FPFH"
+		"output2": "./features-extraction/oclusions/FPFH"
 	},
 	"keypoints": {
 		"landmarksManually": {}
