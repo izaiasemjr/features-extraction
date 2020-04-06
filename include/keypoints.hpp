@@ -6,7 +6,7 @@
 #ifndef KEYPOINT_H
 #define KEYPOINT_H
 
-#include <ros/ros.h>
+//#include <ros/ros.h>
 
 // Generic pcl
 #include <pcl/common/common.h>
