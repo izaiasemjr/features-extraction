@@ -17,3 +17,6 @@
 
 #python
 __pycache__/
+
+#DS Store (mac-os) 
+*.DS_Store

@@ -70,33 +70,34 @@ def main():
                     command = ""
                     count = 0
                     for person in os.listdir(pathPeople):
-                        pathPerson = pathPeople + "/" + person
-                        for cloud in os.listdir(pathPerson):
-                            tp = cloud.split('_')[1]
-                            if tp == 'N' or tp == 'O':
-                                cloud_param = "-cloud {}/{}/{} ".format(
-                                    pathPeople, person, cloud)
-                                keypoints_param = "-keypoints landmarksManually,{}/{}/{},{}".format(
-                                    keypointsPath, person, cloud, region)
-                                labels = ",".join(
-                                    cloud.split('.')[0].split('_'))
-                                output_param = "-output {}:{}".format(
-                                    filename, labels)
+                        if not person.startswith("."):
+                            pathPerson = pathPeople + "/" + person
+                            for cloud in os.listdir(pathPerson):
+                                tp = cloud.split('_')[1]
+                                if tp == 'N' or tp == 'O':
+                                    cloud_param = "-cloud {}/{}/{} ".format(
+                                        pathPeople, person, cloud)
+                                    keypoints_param = "-keypoints landmarksManually,{}/{}/{},{}".format(
+                                        keypointsPath, person, cloud, region)
+                                    labels = ",".join(
+                                        cloud.split('.')[0].split('_'))
+                                    output_param = "-output {}:{}".format(
+                                        filename, labels)
 
-                                features_param = "-features {}".format(
-                                    features)
-                                command = "{} {} {} {} {}".format(
-                                    exe, cloud_param, keypoints_param,
-                                    features_param, output_param)
+                                    features_param = "-features {}".format(
+                                        features)
+                                    command = "{} {} {} {} {}".format(
+                                        exe, cloud_param, keypoints_param,
+                                        features_param, output_param)
 
-                                count = count + 1
-                                print(
-                                    'feito para nuvem ({}) ------> {} - radius_feat: {}, radius_norm {}\nsaved on {}'
-                                    .format(cloud, count, radius_feat,
-                                            radius_norm, pathOutput))
-                                os.system(command)
-                    #     break
-                    # break
+                                    count = count + 1
+                                    print(
+                                        'feito para nuvem ({}) ------> {} - radius_feat: {}, radius_norm {}\nsaved on {}'
+                                        .format(cloud, count, radius_feat,
+                                                radius_norm, pathOutput))
+                                    os.system(command)
+                        #     break
+                        # break
 
 
 if __name__ == "__main__":
