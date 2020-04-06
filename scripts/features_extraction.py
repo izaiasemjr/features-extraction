@@ -22,6 +22,7 @@ def main():
     with open('params.json') as jsonFile:
         paramsJson = json.load(jsonFile)
 
+    count_global = 0
     rays_norm = [10, 15, 25, 35]
     for radius_norm in rays_norm:
 
@@ -90,11 +91,17 @@ def main():
                                         exe, cloud_param, keypoints_param,
                                         features_param, output_param)
 
+                                    count_global = count_global + 1
                                     count = count + 1
+                                    total = 680 * len(rays_norm) * len(
+                                        rays_feat) * len(regions)
                                     print(
-                                        'feito para nuvem ({}) ------> {} - radius_feat: {}, radius_norm {}\nsaved on {}'
-                                        .format(cloud, count, radius_feat,
-                                                radius_norm, pathOutput))
+                                        'feito para nuvem ({}) ------> {} - radius_feat: {}, radius_norm {}\nsaved on {} --- {}% concluido\n'
+                                        .format(
+                                            cloud, count, radius_feat,
+                                            radius_norm, pathOutput,
+                                            round(100 * count_global / total,
+                                                  2)))
                                     os.system(command)
                         #     break
                         # break
