@@ -323,7 +323,8 @@ vector<vector<float>> estimateFPFH(PointCloudXYZPtr cloud,
 
     // get indices
     pcl::PointIndicesPtr indices (new pcl::PointIndices);
-    getIndicesKeypoints(cloud,keypoints,indices,region);
+//    getIndicesKeypoints(cloud,keypoints,indices,region);
+    getIndicesKeypointsFromNose(cloud,keypoints,indices,region);
 
 
     fpfh.setIndices(indices);

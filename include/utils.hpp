@@ -62,10 +62,8 @@ class Tools {
     normal_estimation_omp.setSearchMethod(kdtree_omp);
     normal_estimation_omp.compute(*normals);
   }
-
-
-
 };
+
 
 /**
  * get indices of keypoints manually marked on bosphorus
@@ -128,6 +126,7 @@ void getIndicesKeypoints(
     // mouth center down
     else if(local_point == MOUTH_CENTER_DOWN)
         cloud_keypoints_choice->push_back(cloud_keypoints->points[20]);
+
 
     else {
         cout<<"Choice a valid option for keypoint!\nList Available:"
@@ -348,6 +347,94 @@ void reconstructionGP3(PointCloudXYZPtr cloud, search::KdTree<PointXYZ>::Ptr kdt
 }
 
 
+
+
+void getIndicesKeypointsFromNose(
+        pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
+        pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_keypoints,
+        PointIndicesPtr indices,
+        string local_point="nose_tip"
+        ){
+
+    PointCloudXYZPtr cloud_keypoints_choice(new PointCloudXYZ());
+
+    PointXYZ nose = cloud_keypoints->points[13];
+
+    // nose tip
+    if(local_point == NOSE_TIP)
+        cloud_keypoints_choice->push_back(nose);
+
+    //    // eye corner up_left-extern
+    //    else if(local_point == EYE_UP_LEFT_EXTERN)
+    //        cloud_keypoints_choice->push_back(cloud_keypoints->points[1])   ;
+    //    //eye corner up_left-intern
+    //    else if(local_point == EYE_UP_LEFT_INTERN)
+    //        cloud_keypoints_choice->push_back(cloud_keypoints->points[2]);
+    //    // eye corner up_right-intern
+    //    else if(local_point == EYE_UP_RIGHT_INTERN)
+    //        cloud_keypoints_choice->push_back(cloud_keypoints->points[3])   ;
+    //    //eye corner up_right-extern
+    //    else if(local_point == EYE_UP_RIGHT_EXTERN)
+    //        cloud_keypoints_choice->push_back(cloud_keypoints->points[4]);
+
+    // eye corner right-extern
+    else if(local_point == EYE_RIGHT_EXTERN)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x + 43.15,nose.y + 30.76,nose.z  -50.44));
+    //eye corner right-intern
+    else if(local_point == EYE_RIGHT_INTERN)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x + 12.75,nose.y + 29.22,nose.z  -42.09));
+    // eye corner left-extern
+    else if(local_point == EYE_LEFT_EXTERN)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x - 50.45,nose.y + 26.77,nose.z  -45.81));
+    // eye corner left-intern
+    else if(local_point == EYE_LEFT_INTERN)
+       cloud_keypoints_choice->push_back(PointXYZ(nose.x -19.66,nose.y + 27.69,nose.z  -40.48));
+
+    // mouth corner left
+    else if(local_point == MOUTH_LEFT)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x -24.48,nose.y -39.36,nose.z  -27.24));
+    // mouth corner right
+    else if(local_point == MOUTH_RIGHT)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x + 25.27,nose.y - 36.84,nose.z  -29.99));
+    // mouth center up
+    else if(local_point == MOUTH_CENTER_UP)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x + 0.63,nose.y -29.12,nose.z  -12.6));
+    // mouth center down
+    else if(local_point == MOUTH_CENTER_DOWN)
+        cloud_keypoints_choice->push_back(PointXYZ(nose.x +1.23,nose.y -44.05,nose.z  -14.51));
+    else {
+        cout<<"Choice a valid option for keypoint!\nList Available:"
+        <<NOSE_TIP<<"\n"
+        << EYE_RIGHT_EXTERN<<"\n"
+        << EYE_RIGHT_INTERN<<"\n"
+        << EYE_LEFT_EXTERN<<"\n"
+        << EYE_LEFT_INTERN<<"\n"
+        << MOUTH_LEFT<<"\n"
+        << MOUTH_RIGHT<<"\n"
+        << MOUTH_CENTER_UP<<"\n"
+        << MOUTH_CENTER_DOWN<<"\n"<<endl;
+        exit(1);
+    }
+
+    saveCloudPCD("keypoints_from_nose.pcd",cloud_keypoints_choice);
+
+    // verify if is nan
+    if(!isFinite(cloud_keypoints_choice->points[0])){
+        return;
+    }
+
+    /** get indexes **/
+    pcl::search::KdTree<pcl::PointXYZ> tree;
+    tree.setInputCloud(cloud);
+    vector<float> dist;
+    vector<int> idx;
+    for (int i =0;i<cloud_keypoints_choice->points.size();++i){
+        tree.nearestKSearch(cloud_keypoints_choice->points [i],1, idx,dist);
+        indices->indices.push_back(idx[0]);
+    }
+
+
+}
 
 
 
