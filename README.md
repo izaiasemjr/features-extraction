@@ -1,4 +1,4 @@
 # features-extraction
 
-## Pipeline for features extraction from 3D ace images
+## Pipeline for features extraction from 3D face images
 
